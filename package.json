@@ -1,0 +1,23 @@
+{
+  "name": "contactbook-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tamph973/CT449_Fullstack.git"
+  },
+  "author": "Minh Tam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tamph973/CT449_Fullstack/issues"
+  },
+  "homepage": "https://github.com/tamph973/CT449_Fullstack#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
