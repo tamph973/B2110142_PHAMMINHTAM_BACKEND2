@@ -1,6 +1,6 @@
 const ContactService = require("../services/contact.service");
-const MongoDB = require("../utils/mongodb.util");
 const ApiError = require("../api-error");
+const MongoDB = require("../utils/mongodb.util");
 
 // Create and Save a new contact
 exports.create = async (req, res, next) => {
@@ -19,7 +19,7 @@ exports.create = async (req, res, next) => {
   }
 };
 
-// Retrieve all contacts of user from the database
+// Retrieve all contacts of a user from the database
 exports.findAll = async (req, res, next) => {
   let documents = [];
 
@@ -33,7 +33,7 @@ exports.findAll = async (req, res, next) => {
     }
   } catch (error) {
     return next(
-      new ApiError(500, "An error occurred while creating the contact")
+      new ApiError(500, "An error occrred while retrieving contacts")
     );
   }
 
@@ -80,7 +80,7 @@ exports.update = async (req, res, next) => {
 exports.delete = async (req, res, next) => {
   try {
     const contactService = new ContactService(MongoDB.client);
-    const document = await contactService.delete(req.params.id, req.body);
+    const document = await contactService.delete(req.params.id);
     if (!document) {
       return next(new ApiError(404, "Contact not found"));
     }
@@ -105,15 +105,17 @@ exports.findAllFavorite = async (req, res, next) => {
   }
 };
 
-// Delete all contacts of a user from the database
+// Delete all contacts of a user from database
 exports.deleteAll = async (req, res, next) => {
   try {
     const contactService = new ContactService(MongoDB.client);
-    const deletedCount = await contactService.deleteAll();  
+    const deletedCount = await contactService.deleteAll();
     return res.send({
       message: `${deletedCount} contacts were deleted successfully`,
-    })
+    });
   } catch (error) {
-    return next(new ApiError(500, "An error occurred while removing all contacts"))
+    return next(
+      new ApiError(500, "An error occurred while removing all contacts")
+    );
   }
-}
+};
